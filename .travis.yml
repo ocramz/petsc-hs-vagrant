@@ -5,18 +5,21 @@ language:
   c 
 
 
-# addons:
-#   apt:
-#     packages:
-#     - vagrant
+services:
+  - docker
 
 
 
 before_install:
 
-  - export VAGRANT_VER=1.8.1
+  - export ACCOUNT=ocramz
 
-  - curl https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb
-  - dpkg -i vagrant_${VAGRANT_VER}_x86_64.deb
+  # - export VAGRANT_VER=1.8.1
 
-  - vagrant plugin install vagrant-docker-compose
+  # - curl https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb
+  # - dpkg -i vagrant_${VAGRANT_VER}_x86_64.deb
+
+  # - vagrant plugin install vagrant-docker-compose
+
+script:
+  - make build ACCOUNT=$ACCOUNT
