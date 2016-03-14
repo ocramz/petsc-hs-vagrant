@@ -14,7 +14,7 @@ RUN mkdir -p ${DPKG_DIR}
 
 
 # # Vagrant
-RUN curl -O https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb
+RUN wget https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
 
-# RUN dpkg -i vagrant_${VAGRANT_VER}_x86_64.deb
-# RUN rm vagrant_*.deb
+RUN dpkg -i vagrant.deb
+# RUN rm vagrant.deb
