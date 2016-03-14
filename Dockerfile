@@ -4,6 +4,7 @@
 
 # # DEBIAN
 FROM debian:7.7
+RUN apt-get install -y --no-install-recommends wget
 
 # # env variables
 ENV VAGRANT_VER 1.8.1
