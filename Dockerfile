@@ -24,6 +24,10 @@ RUN apt-get install -y virtualbox virtualbox-ose-dkms linux-headers-3.2.0-4-all
 # RUN apt-cache search linux-headers 
 # linux-headers-$(uname -r)
 
+RUN dpkg-reconfigure virtualbox-dkms
+
+RUN dpkg-reconfigure virtualbox
+
 
 # # Vagrant
 RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
