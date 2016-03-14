@@ -20,7 +20,7 @@ RUN mkdir -p ${DPKG_DIR}
 
 
 # # Vagrant
-RUN wget https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
+RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
 
 RUN dpkg -i vagrant.deb
 # RUN rm vagrant.deb
