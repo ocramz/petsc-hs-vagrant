@@ -18,6 +18,10 @@ ENV DPKG_DIR /var/lib/dpkg
 RUN mkdir -p ${DPKG_DIR}
 
 
+# # VirtualBox
+RUN wget --no-check-certificate http://download.virtualbox.org/virtualbox/5.0.16/virtualbox-5.0_5.0.16-105871~Debian~wheezy_amd64.deb -O virtualbox.deb
+RUN dpkg -i virtualbox.deb
+RUN rm virtualbox.deb
 
 # # Vagrant
 RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
