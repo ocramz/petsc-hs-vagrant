@@ -4,3 +4,11 @@ sudo:
 language: 
   c 
 
+
+addons:
+  apt:
+    packages:
+    - vagrant
+
+before_install:
+  - vagrant plugin install vagrant-docker-compose
