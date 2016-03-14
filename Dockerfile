@@ -4,6 +4,8 @@
 
 # # DEBIAN
 FROM debian:7.7
+# RUN apt-get -qq install -y --no-install-recommends ca-certificates debian-keyring debian-archive-keyring
+RUN apt-get update
 RUN apt-get install -y --no-install-recommends wget
 
 # # env variables
