@@ -32,4 +32,6 @@ RUN rm vagrant.deb
 
 ADD Vagrantfile Vagrantfile
 
-RUN vagrant up
+RUN VBoxManage --version
+
+# RUN vagrant up
