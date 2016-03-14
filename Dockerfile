@@ -1,12 +1,15 @@
-FROM gliderlabs/alpine:3.3
-RUN apk add --no-cache curl wget unzip dpkg tar bash 
+# # ALPINE
+# FROM gliderlabs/alpine:3.3
+# RUN apk add --no-cache curl dpkg wget unzip tar bash 
+
+# # DEBIAN
+FROM debian:7.7
 
 # # env variables
 ENV VAGRANT_VER 1.8.1
 
 # directory paths
 ENV DPKG_DIR /var/lib/dpkg
-
 
 # # mkdir
 RUN mkdir -p ${DPKG_DIR}
