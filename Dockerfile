@@ -25,6 +25,6 @@ RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT
 RUN dpkg -i vagrant.deb
 RUN rm vagrant.deb
 
-RUN vagrant init
+# RUN vagrant init
 
 RUN vagrant up
