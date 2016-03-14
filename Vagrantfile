@@ -1,14 +1,14 @@
 Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "echo Hello"
 
-  config.vm.define "web" do |web|
-    web.vm.box = "apache"
-  end
+  # config.vm.define "web" do |web|
+  #   web.vm.box = "apache"
+  # end
 
-  config.vm.define "db" do |db|
-    db.vm.box = "mysql"
-  end
+  # config.vm.define "db" do |db|
+  #   db.vm.box = "mysql"
+  # end
 
-  config.vm.provision :docker
-  config.vm.provision :docker_compose, yml: "/vagrant/docker-compose.yml", rebuild: true, run: "always"
+  # config.vm.provision :docker
+  # config.vm.provision :docker_compose, yml: "/vagrant/docker-compose.yml", rebuild: true, run: "always"
 end
