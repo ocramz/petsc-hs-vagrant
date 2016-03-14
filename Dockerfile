@@ -19,8 +19,8 @@ RUN mkdir -p ${DPKG_DIR}
 
 
 # # VirtualBox
-# RUN apt-get install -y virtualbox virtualbox-ose-dkms linux-headers-3.2.0-4-all
-RUN apt-get install -y linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') virtualbox
+RUN apt-get install -y virtualbox virtualbox-ose-dkms linux-headers-3.2.0-4-all
+# RUN apt-get install -y linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') virtualbox
 # RUN apt-cache search linux-headers 
 # linux-headers-$(uname -r)
 
@@ -35,4 +35,4 @@ ADD Vagrantfile Vagrantfile
 
 RUN VBoxManage --version
 
-# RUN vagrant up
+RUN vagrant up
