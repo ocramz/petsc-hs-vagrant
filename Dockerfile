@@ -19,19 +19,19 @@ RUN mkdir -p ${DPKG_DIR}
 
 
 # # VirtualBox
-RUN apt-get install -y --no-install-recommends virtualbox virtualbox-ose-dkms 
-RUN apt-cache search linux-headers 
+RUN apt-get install -y --no-install-recommends virtualbox virtualbox-ose-dkms linux-headers-3.2.0-4-all
+# RUN apt-cache search linux-headers 
 # linux-headers-$(uname -r)
 
 
-# # # Vagrant
-# RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
+# # Vagrant
+RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
 
-# RUN dpkg -i vagrant.deb
-# RUN rm vagrant.deb
+RUN dpkg -i vagrant.deb
+RUN rm vagrant.deb
 
-# ADD Vagrantfile Vagrantfile
+ADD Vagrantfile Vagrantfile
 
-# RUN VBoxManage --version
+RUN VBoxManage --version
 
-# # RUN vagrant up
+# RUN vagrant up
