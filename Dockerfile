@@ -19,7 +19,7 @@ RUN mkdir -p ${DPKG_DIR}
 
 
 # # VirtualBox
-RUN apt-get install -y --no-install-recommends virtualbox
+RUN apt-get install -y --no-install-recommends virtualbox virtualbox-ose-dkms linux-headers-generic
 # RUN wget --no-check-certificate http://download.virtualbox.org/virtualbox/5.0.16/virtualbox-5.0_5.0.16-105871~Debian~wheezy_amd64.deb -O virtualbox.deb
 # RUN dpkg -i virtualbox.deb
 # RUN rm virtualbox.deb
