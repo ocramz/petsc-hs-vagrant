@@ -19,7 +19,7 @@ RUN mkdir -p ${DPKG_DIR}
 
 
 # # VirtualBox
-RUN apt-get install -y --no-install-recommends virtualbox virtualbox-ose-dkms linux-headers-3.2.0-4-all
+RUN apt-get install -y virtualbox virtualbox-ose-dkms linux-headers-3.2.0-4-all
 # RUN apt-cache search linux-headers 
 # linux-headers-$(uname -r)
 
