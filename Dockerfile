@@ -19,19 +19,19 @@ RUN mkdir -p ${DPKG_DIR}
 
 
 # # VirtualBox
-RUN apt-get install -y --no-install-recommends virtualbox virtualbox-ose-dkms linux-headers-$(uname -r)
-# RUN wget --no-check-certificate http://download.virtualbox.org/virtualbox/5.0.16/virtualbox-5.0_5.0.16-105871~Debian~wheezy_amd64.deb -O virtualbox.deb
-# RUN dpkg -i virtualbox.deb
-# RUN rm virtualbox.deb
+RUN apt-get install -y --no-install-recommends virtualbox virtualbox-ose-dkms 
+RUN apt-cache search linux-headers 
+# linux-headers-$(uname -r)
 
-# # Vagrant
-RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
 
-RUN dpkg -i vagrant.deb
-RUN rm vagrant.deb
+# # # Vagrant
+# RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
 
-ADD Vagrantfile Vagrantfile
+# RUN dpkg -i vagrant.deb
+# RUN rm vagrant.deb
 
-RUN VBoxManage --version
+# ADD Vagrantfile Vagrantfile
 
-# RUN vagrant up
+# RUN VBoxManage --version
+
+# # RUN vagrant up
