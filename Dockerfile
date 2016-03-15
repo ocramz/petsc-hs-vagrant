@@ -37,6 +37,8 @@ RUN export PACKER_VERSION=0.8.6 && \
 
     rm -rf /tmp/*
 
+RUN yum -y install gcc kernel-devel linux-headers-$(uname -r) kernel-uek-devel-$(uname -r)
+
 # install Virtualbox (Example version: 5.0.14_105127_el7-1)
 RUN export VIRTUALBOX_VERSION=latest && \
     mkdir -p /opt/virtualbox && \
@@ -62,7 +64,7 @@ RUN export VIRTUALBOX_VERSION=latest && \
 
 ADD Vagrantfile .
 
-RUN yum -y install gcc kernel-devel kernel-uek-devel-$(uname -r) # && /etc/init.d/vboxdrv setup
+# && /etc/init.d/vboxdrv setup
 
 RUN /sbin/rcvboxdrv setup && VBoxManage --version
 
