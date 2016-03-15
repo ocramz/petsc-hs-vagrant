@@ -15,11 +15,14 @@ echo "Prepare downloads"                                                        
 echo "download VirtualBox"                                                                                               && \
           curl -L http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb -O && \
           mv virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb $vbox_pathfi /downloads/virtualbox.deb                  
+
+
 RUN echo "download Vagrant"         && \                                                                                           
 # RUN curl -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb -O                                   && \
 #           mv vagrant_1.7.4_x86_64.deb $vbox_pathfi /downloads/vagrant.deb    
 
 wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
+
 
                                             
 RUN echo "Install VirtualBox dependencies & VirtualBox"                                                                      && \
@@ -51,7 +54,16 @@ RUN echo "Install VirtualBox dependencies & VirtualBox"                         
   echo "Remove download files"                                                                                           && \
           rm -rf /downloads
 
+RUN vagrant init hashicorp/precise64 && vagrant up
 
+
+
+
+
+
+
+
+# # # ==== NOT WORKING =====
 
 # # # ALPINE
 # # FROM gliderlabs/alpine:3.3
