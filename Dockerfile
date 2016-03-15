@@ -5,7 +5,7 @@ MAINTAINER Marco Zocca <surname dot name gmail>
 # # tools
 
 RUN apt-get update
-RUN apt-get install -y wget curl dkms
+RUN apt-get install -y wget curl dkms linux-headers-$(uname -r) linux-image-$(uname -r)
 
 
 # # following the procedure at https://www.virtualbox.org/wiki/Linux_Downloads
