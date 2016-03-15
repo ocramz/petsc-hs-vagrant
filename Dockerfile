@@ -21,7 +21,7 @@ RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key ad
 RUN apt-get update
 RUN apt-get install -y virtualbox-5.0
 
-
+RUN /sbin/rcvboxdrv setup
 
 
 
