@@ -175,7 +175,11 @@ RUN echo "Install Vagrant"                                                      
 # RUN vagrant up --provider=docker
 
 
+ADD Vagrantfile Vagrantfile
 
+RUN VBoxManage --version
+
+# RUN vagrant up
 
 
 
