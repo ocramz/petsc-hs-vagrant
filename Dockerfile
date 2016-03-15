@@ -37,15 +37,16 @@ RUN export PACKER_VERSION=0.8.6 && \
 
     rm -rf /tmp/*
 
-RUN yum -y install gcc kernel-devel linux-headers-$(uname -r) kernel-uek-devel-$(uname -r)
-
 # install Virtualbox (Example version: 5.0.14_105127_el7-1)
 RUN export VIRTUALBOX_VERSION=latest && \
     mkdir -p /opt/virtualbox && \
     cd /etc/yum.repos.d/ && \
     wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo && \
     yum install -y \
+      gcc \
       dkms \
+      linux-headers-$(uname -r) \
+      kernel-uek-devel-$(uname -r) \
       kernel-devel && \
     yum -y groupinstall "Development Tools" && \
     if  [ "${VIRTUALBOX_VERSION}" = "latest" ]; \
