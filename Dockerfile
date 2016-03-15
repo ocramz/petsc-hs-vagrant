@@ -99,9 +99,13 @@ RUN  echo "Install Vagrant"                                                     
   echo "Clean apt-get"                                                                                                   && \
           apt-get autoremove                                                                                             && \
   echo "Remove download files"                                                                                           && \
-          rm -rf /downloads         && \
+          rm -rf /downloads         
 
-vagrant init hashicorp/precise64 && vagrant up 
+RUN vagrant init hashicorp/precise64 
+
+RUN VBoxManage --version
+
+# RUN vagrant up 
 
 
 
