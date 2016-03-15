@@ -29,45 +29,24 @@ wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER
 
 
 
-# ############ Virtualbox configuration ##############
-
-RUN echo "Install VirtualBox dependencies & VirtualBox"  
-
-# RUN apt-get purge virtualbox dkms linux-headers-$(uname -r) 
-
-RUN apt-get install -y dkms linux-headers-$(uname -r) linux-image-$(uname -r)
-                                            
-                                                                                     # RUN echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y 
-
-
-RUN apt-get install -y libssl1.0.0 grub
-                                                   
-# apt-get install -y libvpx1 libsdl1.2debian libqtgui4 libqtcore4 libqt4-opengl libqt4-network  libpython2.7 libgl1 libgl1-mesa-glx libcurl3 libxcursor1 libxinerama1 libxmu6 psmisc
-          
-# RUN dpkg -i /downloads/virtualbox.deb     
-            
-
-
-RUN echo "Virtualbox 4.3 installation, as suggested in http://askubuntu.com/a/245874"
-
-RUN apt-get install debian-keyring 
-RUN wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | apt-key add -
-
-
-RUN echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >> /etc/apt/sources.list.d/vbox.list
-
-RUN apt-get update && apt-get -y upgrade
-
-RUN apt-get remove virtualbox*
-
-RUN apt-get install -y virtualbox-4.3 
-
-RUN dpkg-reconfigure virtualbox-4.3
-
-RUN /etc/init.d/vboxdrv setup 
-
-
-RUN cat /var/log/vbox-install.log
+# # ############ Virtualbox configuration ##############
+# RUN echo "Install VirtualBox dependencies & VirtualBox"  
+# # RUN apt-get purge virtualbox dkms linux-headers-$(uname -r) 
+# RUN apt-get install -y dkms linux-headers-$(uname -r) linux-image-$(uname -r)
+# # RUN echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y 
+# RUN apt-get install -y libssl1.0.0 grub                                      
+# # apt-get install -y libvpx1 libsdl1.2debian libqtgui4 libqtcore4 libqt4-opengl libqt4-network  libpython2.7 libgl1 libgl1-mesa-glx libcurl3 libxcursor1 libxinerama1 libxmu6 psmisc
+# # RUN dpkg -i /downloads/virtualbox.deb     
+# RUN echo "Virtualbox 4.3 installation, as suggested in http://askubuntu.com/a/245874"
+# RUN apt-get install debian-keyring 
+# RUN wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | apt-key add -
+# RUN echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >> /etc/apt/sources.list.d/vbox.list
+# RUN apt-get update && apt-get -y upgrade
+# RUN apt-get remove virtualbox*
+# RUN apt-get install -y virtualbox-4.3 
+# RUN dpkg-reconfigure virtualbox-4.3
+# RUN /etc/init.d/vboxdrv setup 
+# RUN cat /var/log/vbox-install.log
 
 
 
@@ -82,9 +61,9 @@ RUN echo "Install Vagrant"                                                      
 
 vagrant init hashicorp/precise64  && \
 
-VBoxManage --version
+# VBoxManage --version
 
-# RUN vagrant up 
+RUN vagrant up --provider=docker
 
 
 
