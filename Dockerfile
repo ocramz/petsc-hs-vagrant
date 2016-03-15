@@ -14,9 +14,10 @@ echo "Prepare downloads"                                                        
           cd /downloads                                                              
 
                                     
-RUN echo "download VirtualBox"                                                                                               && \
-          curl -L http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb -O && \
-          mv virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb $vbox_pathfi /downloads/virtualbox.deb                  
+# RUN echo "download VirtualBox"                                                                                               && \
+#           curl -L http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb -O && \
+#           mv virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb $vbox_pathfi /downloads/virtualbox.deb    
+          
 
 
 
@@ -63,10 +64,24 @@ RUN apt-get install -y libssl1.0.0
           
 
 
-RUN dpkg -i /downloads/virtualbox.deb     
+# RUN dpkg -i /downloads/virtualbox.deb     
+
+# RUN /etc/init.d/vboxdrv setup                
 
 
-RUN /etc/init.d/vboxdrv setup                                                                                      
+
+RUN echo "Virtualbox 4.3 installation, suggested in http://askubuntu.com/a/245874"
+
+RUN echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >> /etc/apt/sources.list.d/vbox.list
+
+RUN apt-get update && sudo apt-get -y upgrade
+
+RUN apt-get remove virtualbox*
+
+RUN apt-get install -y virtualbox-4.3
+
+
+
 
 
 
