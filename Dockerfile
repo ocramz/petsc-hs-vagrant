@@ -4,6 +4,7 @@ MAINTAINER Marco Zocca <surname dot name gmail>
 
 # # tools
 
+RUN apt-get update
 RUN apt-get install -y wget curl dkms
 
 
