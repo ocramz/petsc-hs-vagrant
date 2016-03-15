@@ -16,7 +16,7 @@ echo "download Vagrant"                                                         
           mv vagrant_1.7.4_x86_64.deb $vbox_pathfi /downloads/vagrant.deb                                                && \
 echo "Install VirtualBox dependencies & VirtualBox"                                                                      && \
           apt-get install dkms -y                                                                                        && \
-          echo y | apt-get install linux-image-3.19.0-26-generic -y                                                      && \
+          echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y                                                      && \
           apt-get install -y libssl1.0.0                                                                                 && \
           apt-get install -y libvpx1                                                                                     && \
           apt-get install -y libsdl1.2debian                                                                             && \
