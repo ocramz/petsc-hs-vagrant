@@ -61,7 +61,7 @@ RUN export VIRTUALBOX_VERSION=latest && \
 
 ADD Vagrantfile .
 
-VBoxManage --version
+RUN VBoxManage --version
 
 # RUN vagrant up
 
