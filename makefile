@@ -11,10 +11,10 @@ help:
 	@echo "  push     to push the image to the docker registry"
 
 build:
-	docker build -t $(ACCOUNT)/petsc-docker .
+	docker build -t $(ACCOUNT)/petsc-hs-vagrant .
 
 login:
 	docker login -u $(ACCOUNT)
 
 push: image login
-	docker push $(ACCOUNT)/petsc-docker
+	docker push $(ACCOUNT)/petsc-hs-vagrant
