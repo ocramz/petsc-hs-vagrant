@@ -62,6 +62,8 @@ RUN export VIRTUALBOX_VERSION=latest && \
 
 ADD Vagrantfile .
 
+RUN yum -y install gcc kernel-uek-devel-$(uname -r)
+
 RUN /sbin/rcvboxdrv setup && VBoxManage --version
 
 # RUN vagrant up
