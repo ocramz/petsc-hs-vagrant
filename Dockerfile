@@ -35,7 +35,7 @@ wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER
 
 RUN apt-get purge virtualbox dkms linux-headers-$(uname -r) && \ 
 
-apt-get install -y dkms linux-headers-$(uname -r) 
+apt-get install -y virtualbox-dkms dkms linux-headers-$(uname -r) 
 
 # RUN apt-get install -y virtualbox-4.2
 
