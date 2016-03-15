@@ -41,9 +41,7 @@ apt-get install -y dkms linux-headers-$(uname -r)
 
 # RUN dpkg-reconfigure virtualbox-dkms  && modprobe vboxdrv
                                             
-RUN echo "Install VirtualBox dependencies & VirtualBox"                                                                                                                                                       
-
-# RUN echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y  && \ 
+RUN echo "Install VirtualBox dependencies & VirtualBox"         && \                                                                                                                echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y  && \ 
 
           apt-get install -y libssl1.0.0                                                                                 && \
           apt-get install -y libvpx1                                                                                     && \
