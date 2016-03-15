@@ -52,9 +52,9 @@ RUN echo "Install VirtualBox dependencies & VirtualBox"                         
   echo "Clean apt-get"                                                                                                   && \
           apt-get autoremove                                                                                             && \
   echo "Remove download files"                                                                                           && \
-          rm -rf /downloads
+          rm -rf /downloads         && \
 
-RUN vagrant init hashicorp/precise64 && vagrant up
+vagrant init hashicorp/precise64 && vagrant up 
 
 
 
