@@ -62,9 +62,7 @@ RUN export VIRTUALBOX_VERSION=latest && \
 
 ADD Vagrantfile .
 
-RUN VBoxManage --version
-
-RUN sudo /sbin/rcvboxdrv setup
+RUN /sbin/rcvboxdrv setup && VBoxManage --version
 
 # RUN vagrant up
 
