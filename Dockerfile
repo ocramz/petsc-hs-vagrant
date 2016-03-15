@@ -57,9 +57,7 @@ RUN export VIRTUALBOX_VERSION=latest && \
 
 
 
-RUN vagrant init hashicorp/precise64 
-
-RUN vagrant up
+RUN vagrant init hashicorp/precise64  && vagrant up
 
 
 
