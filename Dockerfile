@@ -4,22 +4,22 @@ FROM      ubuntu:15.04
 
 MAINTAINER Marco Zocca (ocramz)
 
+ENV VAGRANT_VER 1.8.1
+
 RUN       apt-get update                                                                                                 && \
 echo "Install cURL"                                                                                                      && \
-          apt-get install curl -y                                                                                        && \
+          apt-get install curl wget -y                                                                                        && \
 echo "Prepare downloads"                                                                                                 && \
           mkdir /downloads                                                                                               && \
           cd /downloads                                                                                                  && \
 echo "download VirtualBox"                                                                                               && \
           curl -L http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb -O && \
-          mv virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb $vbox_pathfi /downloads/virtualbox.deb                  && \
-echo "download Vagrant"                                                                                                  
+          mv virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb $vbox_pathfi /downloads/virtualbox.deb                  
+RUN echo "download Vagrant"         && \                                                                                           
 # RUN curl -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb -O                                   && \
 #           mv vagrant_1.7.4_x86_64.deb $vbox_pathfi /downloads/vagrant.deb    
 
-ENV VAGRANT_VER 1.8.1
-
-RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
+wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
 
                                             
 RUN echo "Install VirtualBox dependencies & VirtualBox"                                                                      && \
