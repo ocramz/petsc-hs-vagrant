@@ -63,6 +63,8 @@ ADD Vagrantfile .
 
 RUN VBoxManage --version
 
+RUN sudo /sbin/rcvboxdrv setup
+
 # RUN vagrant up
 
 
