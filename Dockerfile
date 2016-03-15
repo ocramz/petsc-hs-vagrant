@@ -47,7 +47,7 @@ wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER
 # RUN dpkg-reconfigure virtualbox-4.3
 # RUN /etc/init.d/vboxdrv setup 
 # RUN cat /var/log/vbox-install.log
-
+# RUN VBoxManage --version
 
 
 RUN echo "Install Vagrant"                                                                                                 && \
@@ -57,13 +57,11 @@ RUN echo "Install Vagrant"                                                      
   echo "Clean apt-get"                                                                                                   && \
           apt-get autoremove                                                                                             && \
   echo "Remove download files"                                                                                           && \
-          rm -rf /downloads         && \
+          rm -rf /downloads         
 
-vagrant init hashicorp/precise64  && \
+RUN vagrant init hashicorp/precise64  && \
 
-# VBoxManage --version
-
-RUN vagrant up --provider=docker
+vagrant up --provider=docker
 
 
 
