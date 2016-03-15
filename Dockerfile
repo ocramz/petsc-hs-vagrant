@@ -1,77 +1,101 @@
-FROM blacklabelops/centos
-MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
+FROM debian:7.7
 
-# Need root to build image
-USER root
+MAINTAINER Marco Zocca <surname dot name gmail>
 
-# install dev tools
-RUN yum install -y \
-      unzip \
-      tar \
-      gzip \
-      sudo \
-      wget && \
-    yum clean all && rm -rf /var/cache/yum/*
+# # tools
 
-# install Hashicorp tools
-RUN export PACKER_VERSION=0.8.6 && \
-    export VAGRANT_VERSION=1.8.1 && \
-    export OTTO_VERSION=0.2.0 && \
-    export TERRAFORM_VERSION=0.6.11 && \
-    export ATLAS_CLI_VERSION=0.2.0 && \
-    # wget --directory-prefix=/tmp https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
-    # unzip /tmp/packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin && \
+RUN apt-get install -y wget curl dkms
 
-    wget --directory-prefix=/tmp https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm && \
-    rpm -i /tmp/vagrant_${VAGRANT_VERSION}_x86_64.rpm && \
 
-    # wget --directory-prefix=/tmp https://releases.hashicorp.com/otto/${OTTO_VERSION}/otto_${OTTO_VERSION}_linux_amd64.zip && \
-    # unzip /tmp/otto_${OTTO_VERSION}_linux_amd64.zip -d /usr/local/bin && \
-    # wget --directory-prefix=/tmp https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
-    # unzip /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin && \
-    # wget --directory-prefix=/tmp https://github.com/hashicorp/atlas-upload-cli/releases/download/v${ATLAS_CLI_VERSION}/atlas-upload-cli_${ATLAS_CLI_VERSION}_linux_amd64.tar.gz && \
+# # following the procedure at https://www.virtualbox.org/wiki/Linux_Downloads
 
-    ls -All /tmp && \
+RUN echo "deb http://download.virtualbox.org/virtualbox/debian wheezy contrib" >> /etc/apt/sources.list
 
-    # tar xzf /tmp/atlas-upload-cli_${ATLAS_CLI_VERSION}_linux_amd64.tar.gz -C /usr/local/bin && \
+RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add -
 
-    rm -rf /tmp/*
-
-# install Virtualbox (Example version: 5.0.14_105127_el7-1)
-RUN export VIRTUALBOX_VERSION=latest && \
-    mkdir -p /opt/virtualbox && \
-    cd /etc/yum.repos.d/ && \
-    wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo && \
-    yum install -y \
-      gcc \
-      dkms \
-      linux-headers-$(uname -r) \
-      kernel-uek-devel-$(uname -r) \
-      kernel-devel && \
-    yum -y groupinstall "Development Tools" && \
-    if  [ "${VIRTUALBOX_VERSION}" = "latest" ]; \
-      then yum install -y VirtualBox-5.0 ; \
-      else yum install -y VirtualBox-5.0-${VIRTUALBOX_VERSION} ; \
-    fi && \
-    yum autoremove -y \
-      tar \
-      unzip \
-      wget && \
-    yum clean all && rm -rf /var/cache/yum/*
+RUN apt-get update
+RUN apt-get install virtualbox-5.0
 
 
 
-# RUN vagrant init hashicorp/precise64  && 
 
-ADD Vagrantfile .
 
-# && /etc/init.d/vboxdrv setup
 
-RUN /sbin/rcvboxdrv setup && VBoxManage --version
 
-RUN cat  /var/log/vbox-install.log
+# FROM blacklabelops/centos
+# MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
-# RUN vagrant up
+# # Need root to build image
+# USER root
+
+# # install dev tools
+# RUN yum install -y \
+#       unzip \
+#       tar \
+#       gzip \
+#       sudo \
+#       wget && \
+#     yum clean all && rm -rf /var/cache/yum/*
+
+# # install Hashicorp tools
+# RUN export PACKER_VERSION=0.8.6 && \
+#     export VAGRANT_VERSION=1.8.1 && \
+#     export OTTO_VERSION=0.2.0 && \
+#     export TERRAFORM_VERSION=0.6.11 && \
+#     export ATLAS_CLI_VERSION=0.2.0 && \
+#     # wget --directory-prefix=/tmp https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
+#     # unzip /tmp/packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin && \
+
+#     wget --directory-prefix=/tmp https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.rpm && \
+#     rpm -i /tmp/vagrant_${VAGRANT_VERSION}_x86_64.rpm && \
+
+#     # wget --directory-prefix=/tmp https://releases.hashicorp.com/otto/${OTTO_VERSION}/otto_${OTTO_VERSION}_linux_amd64.zip && \
+#     # unzip /tmp/otto_${OTTO_VERSION}_linux_amd64.zip -d /usr/local/bin && \
+#     # wget --directory-prefix=/tmp https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+#     # unzip /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin && \
+#     # wget --directory-prefix=/tmp https://github.com/hashicorp/atlas-upload-cli/releases/download/v${ATLAS_CLI_VERSION}/atlas-upload-cli_${ATLAS_CLI_VERSION}_linux_amd64.tar.gz && \
+
+#     ls -All /tmp && \
+
+#     # tar xzf /tmp/atlas-upload-cli_${ATLAS_CLI_VERSION}_linux_amd64.tar.gz -C /usr/local/bin && \
+
+#     rm -rf /tmp/*
+
+# # install Virtualbox (Example version: 5.0.14_105127_el7-1)
+# RUN export VIRTUALBOX_VERSION=latest && \
+#     mkdir -p /opt/virtualbox && \
+#     cd /etc/yum.repos.d/ && \
+#     wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo && \
+#     yum install -y \
+#       gcc \
+#       dkms \
+#       linux-headers-$(uname -r) \
+#       kernel-uek-devel-$(uname -r) \
+#       kernel-devel && \
+#     yum -y groupinstall "Development Tools" && \
+#     if  [ "${VIRTUALBOX_VERSION}" = "latest" ]; \
+#       then yum install -y VirtualBox-5.0 ; \
+#       else yum install -y VirtualBox-5.0-${VIRTUALBOX_VERSION} ; \
+#     fi && \
+#     yum autoremove -y \
+#       tar \
+#       unzip \
+#       wget && \
+#     yum clean all && rm -rf /var/cache/yum/*
+
+
+
+# # RUN vagrant init hashicorp/precise64  && 
+
+# ADD Vagrantfile .
+
+# # && /etc/init.d/vboxdrv setup
+
+# RUN /sbin/rcvboxdrv setup && VBoxManage --version
+
+# RUN cat  /var/log/vbox-install.log
+
+# # RUN vagrant up
 
 
 
@@ -85,14 +109,19 @@ RUN cat  /var/log/vbox-install.log
 
 # MAINTAINER Marco Zocca (ocramz)
 
-# ENV VAGRANT_VER 1.8.1
+
+
+ENV VAGRANT_VER 1.8.1
+
+
 
 # RUN       apt-get update                                                                                                 && \
 # echo "Install cURL"                                                                                                      && \
-#           apt-get install curl wget -y                                                                                        && \
-# echo "Prepare downloads"                                                                                                 && \
-#           mkdir /downloads                                                                                               && \
-#           cd /downloads                                                              
+#           apt-get install curl wget -y                                                                                       
+
+RUN echo "Prepare downloads"                                                         RUN mkdir -p /downloads                                                              
+WORKDIR /downloads                                                            
+
 
                                     
 # # RUN echo "download VirtualBox"                                                                                               && \
@@ -104,8 +133,8 @@ RUN cat  /var/log/vbox-install.log
 
 
 
-# RUN echo "download Vagrant"         && \                                             
-# wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
+RUN echo "download Vagrant"         && \                                             
+wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
 
 
 
@@ -131,14 +160,14 @@ RUN cat  /var/log/vbox-install.log
 # # RUN VBoxManage --version
 
 
-# RUN echo "Install Vagrant"                                                                                                 && \
-#           dpkg -i /downloads/vagrant.deb                                                                                 && \
-#   echo "Install Git"                                                                                                     && \
-#           apt-get install -y git                                                                                         && \
-#   echo "Clean apt-get"                                                                                                   && \
-#           apt-get autoremove                                                                                             && \
-#   echo "Remove download files"                                                                                           && \
-#           rm -rf /downloads         
+RUN echo "Install Vagrant"                                                                                                 && \
+          dpkg -i /downloads/vagrant.deb                                                                                 && \
+  echo "Install Git"                                                                                                     && \
+          apt-get install -y git                                                                                         && \
+  echo "Clean apt-get"                                                                                                   && \
+          apt-get autoremove                                                                                             && \
+  echo "Remove download files"                                                                                           && \
+          rm -rf /downloads         
 
 # # RUN vagrant init hashicorp/precise64  && \
 
