@@ -56,6 +56,9 @@ RUN export VIRTUALBOX_VERSION=latest && \
     yum clean all && rm -rf /var/cache/yum/*
 
 
+
+RUN vagrant init hashicorp/precise64 
+
 RUN vagrant up
 
 
