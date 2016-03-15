@@ -15,7 +15,7 @@ RUN echo "deb http://download.virtualbox.org/virtualbox/debian wheezy contrib" >
 RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add -
 
 RUN apt-get update
-RUN apt-get install virtualbox-5.0
+RUN apt-get install -y virtualbox-5.0
 
 
 
