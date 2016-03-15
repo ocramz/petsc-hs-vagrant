@@ -14,9 +14,9 @@ echo "Prepare downloads"                                                        
           cd /downloads                                                              
 
                                     
-# RUN echo "download VirtualBox"                                                                                               && \
-#           curl -L http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb -O && \
-#           mv virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb $vbox_pathfi /downloads/virtualbox.deb                  
+RUN echo "download VirtualBox"                                                                                               && \
+          curl -L http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb -O && \
+          mv virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb $vbox_pathfi /downloads/virtualbox.deb                  
 
 
 
@@ -33,12 +33,15 @@ wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER
 
 # ############ Virtualbox configuration ##############
 
-RUN apt-get purge virtualbox-4.2 dkms linux-headers-$(uname -r) && apt-get install -y linux-headers-$(uname -r) && apt-get install -y virtualbox-4.2
+RUN apt-get purge virtualbox dkms linux-headers-$(uname -r) && \ 
+
+apt-get install -y dkms linux-headers-$(uname -r) 
+
+# RUN apt-get install -y virtualbox-4.2
 
 RUN dpkg-reconfigure virtualbox-dkms  && modprobe vboxdrv
                                             
-RUN echo "Install VirtualBox dependencies & VirtualBox"                                                                      && \
-          apt-get install dkms -y                                                                                        
+RUN echo "Install VirtualBox dependencies & VirtualBox"                                                                                                                                                       
 
 # RUN echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y  && \ 
 
@@ -57,7 +60,9 @@ RUN echo "Install VirtualBox dependencies & VirtualBox"                         
           apt-get install -y libxinerama1                                                                                && \
           apt-get install -y libxmu6                                                                                     && \
           apt-get install -y psmisc                                                                                     
-          # dpkg -i /downloads/virtualbox.deb                                                                              && \
+
+
+RUN dpkg -i /downloads/virtualbox.deb     
 
 
 RUN /etc/init.d/vboxdrv setup                                                                                      
