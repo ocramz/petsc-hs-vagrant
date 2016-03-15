@@ -59,9 +59,9 @@ RUN echo "Install Vagrant"                                                      
   echo "Remove download files"                                                                                           && \
           rm -rf /downloads         
 
-RUN vagrant init hashicorp/precise64  && \
+# RUN vagrant init hashicorp/precise64  && \
 
-vagrant up --provider=docker
+RUN vagrant up --provider=docker
 
 
 
