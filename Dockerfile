@@ -85,6 +85,8 @@ RUN apt-get update && apt-get -y upgrade
 
 RUN apt-get remove virtualbox*
 
+RUN apt-get install -y dkms linux-headers-$(uname -r) && /etc/init.d/vboxdrv setup
+
 RUN apt-get install -y virtualbox-4.3
 
 
