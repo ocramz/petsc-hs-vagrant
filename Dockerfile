@@ -68,13 +68,10 @@ RUN apt-get install -y libssl1.0.0
             
 
 
-RUN echo "Virtualbox 4.3 installation, suggested in http://askubuntu.com/a/245874"
+RUN echo "Virtualbox 4.3 installation, as suggested in http://askubuntu.com/a/245874"
 
 RUN apt-get install debian-keyring 
 RUN wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | apt-key add -
-
-# gpg --keyserver pgp.mit.edu --recv-keys 1F41B907 && \
-# gpg --armor --export 1F41B907 | apt-key add -
 
 
 RUN echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >> /etc/apt/sources.list.d/vbox.list
@@ -85,25 +82,25 @@ RUN apt-get remove virtualbox*
 
 RUN apt-get install -y dkms linux-headers-$(uname -r) 
 
-RUN apt-get install -y virtualbox-4.3
+RUN apt-get install -y virtualbox-4.3 && \
 
-RUN  /etc/init.d/vboxdrv setup
-
-
+/etc/init.d/vboxdrv setup && \
 
 
-RUN  echo "Install Vagrant"                                                                                                 && \
+
+
+echo "Install Vagrant"                                                                                                 && \
           dpkg -i /downloads/vagrant.deb                                                                                 && \
   echo "Install Git"                                                                                                     && \
           apt-get install -y git                                                                                         && \
   echo "Clean apt-get"                                                                                                   && \
           apt-get autoremove                                                                                             && \
   echo "Remove download files"                                                                                           && \
-          rm -rf /downloads         
+          rm -rf /downloads         && \
 
-RUN vagrant init hashicorp/precise64 
+vagrant init hashicorp/precise64  && \
 
-RUN VBoxManage --version
+VBoxManage --version
 
 # RUN vagrant up 
 
