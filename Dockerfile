@@ -65,9 +65,7 @@ RUN apt-get install -y libssl1.0.0
 
 
 # RUN dpkg -i /downloads/virtualbox.deb     
-
-# RUN /etc/init.d/vboxdrv setup                
-
+            
 
 
 RUN echo "Virtualbox 4.3 installation, suggested in http://askubuntu.com/a/245874"
@@ -85,11 +83,11 @@ RUN apt-get update && apt-get -y upgrade
 
 RUN apt-get remove virtualbox*
 
-RUN apt-get install -y dkms linux-headers-$(uname -r) && /etc/init.d/vboxdrv setup
+RUN apt-get install -y dkms linux-headers-$(uname -r) 
 
 RUN apt-get install -y virtualbox-4.3
 
-
+RUN  /etc/init.d/vboxdrv setup
 
 
 
