@@ -72,6 +72,11 @@ RUN apt-get install -y libssl1.0.0
 
 RUN echo "Virtualbox 4.3 installation, suggested in http://askubuntu.com/a/245874"
 
+RUN apt-get install debian-keyring &&  \
+gpg --keyserver pgp.mit.edu --recv-keys 1F41B907 && \
+gpg --armor --export 1F41B907 | apt-key add -
+
+
 RUN echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >> /etc/apt/sources.list.d/vbox.list
 
 RUN apt-get update && sudo apt-get -y upgrade
