@@ -41,23 +41,26 @@ apt-get install -y dkms linux-headers-$(uname -r)
 
 # RUN dpkg-reconfigure virtualbox-dkms  && modprobe vboxdrv
                                             
-RUN echo "Install VirtualBox dependencies & VirtualBox"         && \                                                                                                                echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y  && \ 
+RUN echo "Install VirtualBox dependencies & VirtualBox"         && \                                                                                                                echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y 
 
-          apt-get install -y libssl1.0.0                                                                                 && \
-          apt-get install -y libvpx1                                                                                     && \
-          apt-get install -y libsdl1.2debian                                                                             && \
-          apt-get install -y libqtgui4                                                                                   && \
-          apt-get install -y libqtcore4                                                                                  && \
-          apt-get install -y libqt4-opengl                                                                               && \
-          apt-get install -y libqt4-network                                                                              && \
-          apt-get install -y libpython2.7                                                                                && \
-          apt-get install -y libgl1                                                                                      && \
-          apt-get install -y libgl1-mesa-glx                                                                             && \
-          apt-get install -y libcurl3                                                                                    && \
-          apt-get install -y libxcursor1                                                                                 && \
-          apt-get install -y libxinerama1                                                                                && \
-          apt-get install -y libxmu6                                                                                     && \
-          apt-get install -y psmisc                                                                                     
+
+RUN apt-get install -y libssl1.0.0
+                                                   
+          # apt-get install -y libvpx1                                                                                     && \
+          # apt-get install -y libsdl1.2debian                                                                             && \
+          # apt-get install -y libqtgui4                                                                                   && \
+          # apt-get install -y libqtcore4                                                                                  && \
+          # apt-get install -y libqt4-opengl                                                                               && \
+          # apt-get install -y libqt4-network                                                                              && \
+          # apt-get install -y libpython2.7                                                                                && \
+          # apt-get install -y libgl1                                                                                      && \
+          # apt-get install -y libgl1-mesa-glx                                                                             && \
+          # apt-get install -y libcurl3                                                                                    && \
+          # apt-get install -y libxcursor1                                                                                 && \
+          # apt-get install -y libxinerama1                                                                                && \
+          # apt-get install -y libxmu6                                                                                     && \
+          # apt-get install -y psmisc
+          
 
 
 RUN dpkg -i /downloads/virtualbox.deb     
