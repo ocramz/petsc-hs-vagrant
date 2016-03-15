@@ -19,7 +19,7 @@ echo "download Vagrant"
 
 ENV VAGRANT_VER 1.8.1
 
-RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
+RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
 
                                             
 RUN echo "Install VirtualBox dependencies & VirtualBox"                                                                      && \
