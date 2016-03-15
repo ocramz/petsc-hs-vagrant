@@ -38,8 +38,10 @@ RUN apt-get purge virtualbox-4.2 dkms linux-headers-$(uname -r) && apt-get insta
 RUN dpkg-reconfigure virtualbox-dkms  && modprobe vboxdrv
                                             
 RUN echo "Install VirtualBox dependencies & VirtualBox"                                                                      && \
-          apt-get install dkms -y                                                                                        && \
-          echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y                                                      && \
+          apt-get install dkms -y                                                                                        
+
+# RUN echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y  && \ 
+
           apt-get install -y libssl1.0.0                                                                                 && \
           apt-get install -y libvpx1                                                                                     && \
           apt-get install -y libsdl1.2debian                                                                             && \
@@ -54,9 +56,11 @@ RUN echo "Install VirtualBox dependencies & VirtualBox"                         
           apt-get install -y libxcursor1                                                                                 && \
           apt-get install -y libxinerama1                                                                                && \
           apt-get install -y libxmu6                                                                                     && \
-          apt-get install -y psmisc                                                                                      && \
-          dpkg -i /downloads/virtualbox.deb                                                                              && \
-          /etc/init.d/vboxdrv setup                                                                                      
+          apt-get install -y psmisc                                                                                     
+          # dpkg -i /downloads/virtualbox.deb                                                                              && \
+
+
+RUN /etc/init.d/vboxdrv setup                                                                                      
 
 
 
