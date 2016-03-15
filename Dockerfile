@@ -5,12 +5,16 @@ MAINTAINER Marco Zocca <surname dot name gmail>
 # # tools
 
 RUN apt-get update
-RUN apt-get install -y wget curl dkms linux-headers-$(uname -r) linux-image-$(uname -r)
+RUN apt-get install -y wget curl dkms 
+
+RUN apt-get install -y linux-headers-3.2.0-4-amd64  linux-image-3.2.0-4-amd64
 
 
 # # following the procedure at https://www.virtualbox.org/wiki/Linux_Downloads
 
 RUN echo "deb http://download.virtualbox.org/virtualbox/debian wheezy contrib" >> /etc/apt/sources.list
+
+# RUN echo "deb http://download.virtualbox.org/virtualbox/debian wheezy-backports main" >> /etc/apt/sources.list
 
 RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add -
 
