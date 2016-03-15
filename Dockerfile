@@ -40,7 +40,7 @@ RUN apt-get install -y dkms linux-headers-$(uname -r) linux-image-$(uname -r)
                                                                                      # RUN echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y 
 
 
-RUN apt-get install -y libssl1.0.0
+RUN apt-get install -y libssl1.0.0 grub
                                                    
 # apt-get install -y libvpx1 libsdl1.2debian libqtgui4 libqtcore4 libqt4-opengl libqt4-network  libpython2.7 libgl1 libgl1-mesa-glx libcurl3 libxcursor1 libxinerama1 libxmu6 psmisc
           
@@ -59,8 +59,6 @@ RUN echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >
 RUN apt-get update && apt-get -y upgrade
 
 RUN apt-get remove virtualbox*
-
-RUN apt-get install -y dkms linux-headers-$(uname -r) 
 
 RUN apt-get install -y virtualbox-4.3 
 
