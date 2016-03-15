@@ -2,6 +2,8 @@
 # # https://github.com/tdeheurles/vbox-vagrant
 FROM      ubuntu:15.04
 
+MAINTAINER Marco Zocca (ocramz)
+
 RUN       apt-get update                                                                                                 && \
 echo "Install cURL"                                                                                                      && \
           apt-get install curl -y                                                                                        && \
@@ -11,10 +13,16 @@ echo "Prepare downloads"                                                        
 echo "download VirtualBox"                                                                                               && \
           curl -L http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb -O && \
           mv virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb $vbox_pathfi /downloads/virtualbox.deb                  && \
-echo "download Vagrant"                                                                                                  && \
-          curl -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb -O                                   && \
-          mv vagrant_1.7.4_x86_64.deb $vbox_pathfi /downloads/vagrant.deb                                                && \
-echo "Install VirtualBox dependencies & VirtualBox"                                                                      && \
+echo "download Vagrant"                                                                                                  
+# RUN curl -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb -O                                   && \
+#           mv vagrant_1.7.4_x86_64.deb $vbox_pathfi /downloads/vagrant.deb    
+
+ENV VAGRANT_VER 1.8.1
+
+RUN wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O vagrant.deb
+
+                                            
+RUN echo "Install VirtualBox dependencies & VirtualBox"                                                                      && \
           apt-get install dkms -y                                                                                        && \
           echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y                                                      && \
           apt-get install -y libssl1.0.0                                                                                 && \
