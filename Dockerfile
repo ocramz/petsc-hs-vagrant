@@ -66,6 +66,8 @@ RUN yum -y install gcc kernel-uek-devel-$(uname -r)
 
 RUN /sbin/rcvboxdrv setup && VBoxManage --version
 
+RUN cat  /var/log/vbox-install.log
+
 # RUN vagrant up
 
 
