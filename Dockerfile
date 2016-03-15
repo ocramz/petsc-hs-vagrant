@@ -7,7 +7,7 @@ MAINTAINER Marco Zocca <surname dot name gmail>
 RUN apt-get update
 RUN apt-get install -y wget curl dkms 
 
-RUN apt-get install -y linux-headers-3.2.0-4-amd64  linux-image-3.2.0-4-amd64
+RUN apt-get install -y linux-headers-3.2.0-4-amd64  linux-headers-3.19.0 linux-image-3.2.0-4-amd64
 
 
 # # following the procedure at https://www.virtualbox.org/wiki/Linux_Downloads
@@ -139,7 +139,7 @@ WORKDIR /downloads
 
 
 RUN echo "download Vagrant"         && \                                             
-wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
+wget -q --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
 
 
 
