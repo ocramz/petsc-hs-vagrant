@@ -23,10 +23,7 @@ echo "Prepare downloads"                                                        
 
 
 
-RUN echo "download Vagrant"         && \                                                                                           
-# RUN curl -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb -O                                   && \
-#           mv vagrant_1.7.4_x86_64.deb $vbox_pathfi /downloads/vagrant.deb    
-
+RUN echo "download Vagrant"         && \                                             
 wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER}/vagrant_${VAGRANT_VER}_x86_64.deb -O /downloads/vagrant.deb
 
 
@@ -36,34 +33,17 @@ wget --no-check-certificate https://releases.hashicorp.com/vagrant/${VAGRANT_VER
 
 RUN echo "Install VirtualBox dependencies & VirtualBox"  
 
-# RUN apt-get purge virtualbox dkms linux-headers-$(uname -r) && \ 
-# apt-get install -y dkms linux-headers-$(uname -r) 
+# RUN apt-get purge virtualbox dkms linux-headers-$(uname -r) 
 
-# RUN apt-get install -y virtualbox-4.2
-# RUN dpkg-reconfigure virtualbox-dkms  && modprobe vboxdrv
+RUN apt-get install -y dkms linux-headers-$(uname -r) linux-image-$(uname -r)
                                             
                                                                                      # RUN echo y | apt-get install linux-image-3.19.0-26-generic linux-headers-3.19.0-26-generic -y 
 
 
 RUN apt-get install -y libssl1.0.0
                                                    
-          # apt-get install -y libvpx1                                                                                     && \
-          # apt-get install -y libsdl1.2debian                                                                             && \
-          # apt-get install -y libqtgui4                                                                                   && \
-          # apt-get install -y libqtcore4                                                                                  && \
-          # apt-get install -y libqt4-opengl                                                                               && \
-          # apt-get install -y libqt4-network                                                                              && \
-          # apt-get install -y libpython2.7                                                                                && \
-          # apt-get install -y libgl1                                                                                      && \
-          # apt-get install -y libgl1-mesa-glx                                                                             && \
-          # apt-get install -y libcurl3                                                                                    && \
-          # apt-get install -y libxcursor1                                                                                 && \
-          # apt-get install -y libxinerama1                                                                                && \
-          # apt-get install -y libxmu6                                                                                     && \
-          # apt-get install -y psmisc
+# apt-get install -y libvpx1 libsdl1.2debian libqtgui4 libqtcore4 libqt4-opengl libqt4-network  libpython2.7 libgl1 libgl1-mesa-glx libcurl3 libxcursor1 libxinerama1 libxmu6 psmisc
           
-
-
 # RUN dpkg -i /downloads/virtualbox.deb     
             
 
@@ -82,14 +62,18 @@ RUN apt-get remove virtualbox*
 
 RUN apt-get install -y dkms linux-headers-$(uname -r) 
 
-RUN apt-get install -y virtualbox-4.3 && \
+RUN apt-get install -y virtualbox-4.3 
 
-/etc/init.d/vboxdrv setup && \
+RUN dpkg-reconfigure virtualbox-4.3
+
+RUN /etc/init.d/vboxdrv setup 
+
+
+RUN cat /var/log/vbox-install.log
 
 
 
-
-echo "Install Vagrant"                                                                                                 && \
+RUN echo "Install Vagrant"                                                                                                 && \
           dpkg -i /downloads/vagrant.deb                                                                                 && \
   echo "Install Git"                                                                                                     && \
           apt-get install -y git                                                                                         && \
