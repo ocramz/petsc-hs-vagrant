@@ -17,7 +17,7 @@ RUN sudo dnf -y upgrade
 RUN dnf install -y binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
 
 
-RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
+# RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
 
 RUN mkdir -p /downloads
 RUN wget -q http://download.virtualbox.org/virtualbox/5.0.16/VirtualBox-5.0-5.0.16_105871_fedora22-1.x86_64.rpm -O /downloads/virtualbox-fedora22.rpm
