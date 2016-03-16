@@ -1,17 +1,18 @@
-FROM debian:7.7
+# FROM debian:7.7
 # FROM ubuntu:12.04
+FROM fedora:23
 
 MAINTAINER Marco Zocca <surname dot name gmail>
 
-# # tools
+# # # tools
 
-RUN apt-get update
-RUN apt-get install -y wget curl 
+# RUN apt-get update
+# RUN apt-get install -y wget curl 
 
-RUN apt-get install -y sudo
+# RUN apt-get install -y sudo
 
 
-RUN apt-cache search linux-headers 
+# RUN apt-cache search linux-headers 
 
 # RUN sudo apt-get install -y linux-headers-3.19.0-30-generic 
 # # linux-headers-3.2.0-4-all # linux-image-3.2.0-4-amd64
