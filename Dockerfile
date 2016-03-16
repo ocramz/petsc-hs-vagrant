@@ -12,9 +12,9 @@ RUN wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -O
 
 # RUN ls -lsA /etc/yum.repos.d/
 
-RUN dnf update
+RUN dnf update -y
 
-RUN dnf install binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
+RUN dnf install -y binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
 
 
 RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
