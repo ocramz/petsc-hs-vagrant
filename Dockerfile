@@ -4,8 +4,12 @@ MAINTAINER Marco Zocca <surname dot name gmail>
 
 # # tools
 
-RUN sudo apt-get update
-RUN sudo apt-get install -y sudo wget curl dkms 
+RUN apt-get update
+RUN apt-get install -y wget curl 
+
+
+RUN apt-get install -y sudo
+RUN sudo apt-get install -y dkms 
 
 RUN sudo apt-get install -y linux-headers-3.2.0-4-all # linux-image-3.2.0-4-amd64
 
