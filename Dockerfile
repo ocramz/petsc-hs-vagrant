@@ -1,4 +1,5 @@
-FROM debian:7.7
+#FROM debian:7.7
+FROM ubuntu:12.04
 
 MAINTAINER Marco Zocca <surname dot name gmail>
 
