@@ -17,6 +17,7 @@ RUN dnf install -y binutils gcc make patch libgomp glibc-headers glibc-devel ker
 
 # RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
 
+# # # download, install virtualbox
 RUN mkdir -p /downloads
 RUN wget -q http://download.virtualbox.org/virtualbox/5.0.16/VirtualBox-5.0-5.0.16_105871_fedora22-1.x86_64.rpm -O /downloads/virtualbox-fedora22.rpm
 WORKDIR /downloads
@@ -24,16 +25,24 @@ RUN dnf install -y virtualbox-fedora22.rpm
 
 # ##### RUN sudo /usr/sbin/rcvboxdrv setup
 
+# "functions.sh" bug
+RUN find / -name functions.sh
 RUN ln -s /sbin/functions.sh /etd/init.d/functions.sh
+
 RUN /usr/lib/virtualbox/vboxdrv.sh setup
+
 
 # RUN cat /usr/lib/virtualbox/vboxdrv.sh
 
+
+# "KERN_DIR" env var, just in case it's needed
 ENV KERN_DIR /usr/src/kernels/`uname -r`
+
  
  
 
-# RUN dnf install -y vagrant
+# # # install Vagrant
+RUN dnf install -y vagrant
 
 
 
