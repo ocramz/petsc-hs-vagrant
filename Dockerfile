@@ -27,7 +27,7 @@ RUN dnf install -y virtualbox-fedora22.rpm
 
 # "functions.sh" bug
 RUN find / -name functions.sh
-RUN ln -s /sbin/functions.sh /etd/init.d/functions.sh
+RUN ln -s /etd/init.d/functions.sh /sbin/functions.sh 
 
 RUN /usr/lib/virtualbox/vboxdrv.sh setup
 
