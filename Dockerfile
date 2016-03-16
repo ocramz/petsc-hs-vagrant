@@ -6,7 +6,15 @@ MAINTAINER Marco Zocca <surname dot name gmail>
 
 # # Fedora-based (dnf replaces yum for Fedora > 22)
 
-RUN dnf install wget curl sudo
+RUN dnf install -y wget curl sudo
+
+RUN wget -O /etc/yum.repos.d/virtualbox.repo http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo 
+
+RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
+
+
+
+
 
 
 # # # tools
