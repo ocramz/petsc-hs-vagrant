@@ -12,7 +12,7 @@ RUN wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -O
 
 # RUN ls -lsA /etc/yum.repos.d/
 
-RUN sudo dnf update -y
+RUN sudo dnf -y upgrade
 
 RUN dnf install -y binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
 
