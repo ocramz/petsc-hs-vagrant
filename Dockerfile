@@ -22,9 +22,9 @@ RUN wget -q http://download.virtualbox.org/virtualbox/5.0.16/VirtualBox-5.0-5.0.
 
 WORKDIR /downloads
 
-RUN rpm -iv virtualbox-fedora22.rpm
+RUN dnf localinstall virtualbox-fedora22.rpm
 
-
+RUN sudo /usr/sbin/rcvboxdrv setup
 
 
 
