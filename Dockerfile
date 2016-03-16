@@ -26,8 +26,9 @@ RUN dnf install -y virtualbox-fedora22.rpm
 # ##### RUN sudo /usr/sbin/rcvboxdrv setup
 
 # "functions.sh" bug
-RUN find / -name functions.sh
-RUN ln -s /etd/init.d/functions.sh /sbin/functions.sh 
+RUN find / -name functions
+# # " make a symlink for the time being
+RUN ln -s /etd/init.d/functions /sbin/functions.sh 
 
 RUN /usr/lib/virtualbox/vboxdrv.sh setup
 
