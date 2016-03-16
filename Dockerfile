@@ -22,7 +22,7 @@ RUN wget -q http://download.virtualbox.org/virtualbox/5.0.16/VirtualBox-5.0-5.0.
 
 WORKDIR /downloads
 
-# RUN dnf install -y 
+RUN rpm -iv virtualbox-fedora22.rpm
 
 
 
