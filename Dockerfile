@@ -6,30 +6,29 @@ MAINTAINER Marco Zocca <surname dot name gmail>
 
 # # Fedora-based (dnf replaces yum for Fedora > 22)
 
-RUN dnf install -y wget sudo virtualbox-dkms
+RUN dnf install -y wget sudo
 
 RUN wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo 
 
-RUN ls -lsA /etc/yum.repos.d/
+# RUN ls -lsA /etc/yum.repos.d/
 
 RUN dnf update
 
 RUN dnf install binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
 
 
-# RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
+RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -
 
 RUN mkdir -p /downloads
 RUN wget -q http://download.virtualbox.org/virtualbox/5.0.16/VirtualBox-5.0-5.0.16_105871_fedora22-1.x86_64.rpm -O /downloads/virtualbox-fedora22.rpm
 WORKDIR /downloads
 RUN dnf install -y virtualbox-fedora22.rpm
 
-# RUN dnf install -y virtualbox
-
 # RUN sudo /usr/sbin/rcvboxdrv setup
 RUN /usr/lib/virtualbox/vboxdrv.sh setup
 
-
+ENV KERN_DIR /usr/src/kernels/`uname -r`
+ 
  
 
 # # # tools
