@@ -23,9 +23,11 @@ WORKDIR /downloads
 RUN dnf install -y virtualbox-fedora22.rpm
 
 # ##### RUN sudo /usr/sbin/rcvboxdrv setup
-# RUN /usr/lib/virtualbox/vboxdrv.sh setup
 
-RUN cat /usr/lib/virtualbox/vboxdrv.sh
+RUN ln -s /sbin/functions.sh /etd/init.d/functions.sh
+RUN /usr/lib/virtualbox/vboxdrv.sh setup
+
+# RUN cat /usr/lib/virtualbox/vboxdrv.sh
 
 ENV KERN_DIR /usr/src/kernels/`uname -r`
  
