@@ -4,6 +4,11 @@ FROM fedora:23
 
 MAINTAINER Marco Zocca <surname dot name gmail>
 
+# # Fedora-based (dnf replaces yum for Fedora > 22)
+
+RUN dnf install wget curl sudo
+
+
 # # # tools
 
 # RUN apt-get update
