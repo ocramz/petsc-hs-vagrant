@@ -1,5 +1,5 @@
-#FROM debian:7.7
-FROM ubuntu:12.04
+FROM debian:7.7
+# FROM ubuntu:12.04
 
 MAINTAINER Marco Zocca <surname dot name gmail>
 
@@ -11,26 +11,28 @@ RUN apt-get install -y wget curl
 RUN apt-get install -y sudo
 
 
-RUN sudo apt-get install -y linux-headers-3.19.0-30-generic 
-# linux-headers-3.2.0-4-all # linux-image-3.2.0-4-amd64
+RUN apt-cache search linux-headers 
 
-RUN sudo apt-get install -y dkms virtualbox-dkms # debconf-get-selections debconf-utils
+# RUN sudo apt-get install -y linux-headers-3.19.0-30-generic 
+# # linux-headers-3.2.0-4-all # linux-image-3.2.0-4-amd64
 
-RUN ls -lsA /lib/modules
+# RUN sudo apt-get install -y dkms virtualbox-dkms # debconf-get-selections debconf-utils
+
+# RUN ls -lsA /lib/modules
 
 
-# # following the procedure at https://www.virtualbox.org/wiki/Linux_Downloads
+# # # following the procedure at https://www.virtualbox.org/wiki/Linux_Downloads
 
-RUN sudo echo "deb http://download.virtualbox.org/virtualbox/debian wheezy contrib" >> /etc/apt/sources.list
+# RUN sudo echo "deb http://download.virtualbox.org/virtualbox/debian wheezy contrib" >> /etc/apt/sources.list
 
-# RUN echo "deb http://download.virtualbox.org/virtualbox/debian wheezy-backports main" >> /etc/apt/sources.list
+# # RUN echo "deb http://download.virtualbox.org/virtualbox/debian wheezy-backports main" >> /etc/apt/sources.list
 
-RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+# RUN wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 
-RUN sudo apt-get update
-RUN sudo apt-get install -y virtualbox-5.0
+# RUN sudo apt-get update
+# RUN sudo apt-get install -y virtualbox-5.0
 
-RUN sudo /sbin/rcvboxdrv setup
+# RUN sudo /sbin/rcvboxdrv setup
 
 
 
